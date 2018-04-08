@@ -13,6 +13,7 @@ ini_set('display_errors', 1);
 require(dirname( dirname(dirname(__FILE__))).'/Metier/Metier_session_checker.php');
 require(dirname( dirname(dirname(__FILE__))).'/Metier/Metier_get_All_posts.php');
 $all_posts=Metier_get_All_posts();
+
 ?>
 
 <!DOCTYPE html>
@@ -30,6 +31,7 @@ $all_posts=Metier_get_All_posts();
     <link href="../css/online_user.css" rel="stylesheet">
     <link href="../css/user_post_component.css" rel="stylesheet">
     <link href="../css/post_design.css" rel="stylesheet">
+    <link href="../css/comment.css" rel="stylesheet">
 
     <link href="../css/profil_user.css" rel="stylesheet">
     <!-- Custom Fonts -->
@@ -77,6 +79,30 @@ $all_posts=Metier_get_All_posts();
                 <li class="active"><a href="../">Default <span class="sr-only">(current)</span></a></li>
                 <li><a href="../navbar-static-top/">Static top</a></li>
                 <li><a href="#"  data-toggle="modal" data-target="#login-Modal">Fixed top</a></li>
+                <li id="generique"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="fa  fa-2x fa-bell-o"></i><span class="badge">4</span></a>
+                    <ul class="dropdown-menu  chats" style="width: 308px;">
+
+                         <!--   <li class="left clearfix">
+                    	<span class="chat-img pull-left">
+                    		<img src="../notification_sound/notification.mp3" alt="User Avatar">
+                    	</span>
+                                <div class="chat-body clearfix">
+                                    <div class="header">
+                                        <strong class="primary-font">John Doe</strong>
+                                        <small class="pull-right text-muted"><i class="fa fa-clock-o"></i> 12 mins ago</small>
+                                    </div>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                    </p>
+                                </div>
+                            </li>
+
+                        <li role="separator" class="divider"></li>-->
+
+                    </ul>
+                </li>
+
+
             </ul>
         </div><!--/.nav-collapse -->
     </div><!--/.container-fluid -->
@@ -166,13 +192,16 @@ $all_posts=Metier_get_All_posts();
                         </div><!-- /.panel-footer -->
                     </div><!-- /.timeline-panel.panel -->
 <!-- end post -->
-                    <?php for($r=0;$r<count($all_posts);$r++) {
+
+                    <?php  if (empty($all_posts)) {
+                        goto a;
+                    }  for($r=0;$r<count($all_posts);$r++) {
                       // $t=;
 
-                       ?>
+                    ?>
                         <div class="panel panel-default">
                         <div class="panel-heading">
-                            <img src="<?php   echo $all_posts[$r][4]  ;?>" class="img-rounded">
+                            <img src="<?php   echo $all_posts[$r][4]  ; $id_post= $all_posts[$r][5] ;?>" class="img-rounded">
                             <div class="pull-right text-right">
                                 <i class="fa fa-calendar"></i><br><?php echo $all_posts[$r][1]; ?>
                             </div>
@@ -196,17 +225,17 @@ $all_posts=Metier_get_All_posts();
                                 </div>
                                 <div class="pull-right"><strong><?php   echo $all_posts[$r][2]; ?></strong>  liked this</div>
                             </div>
-                            <?php if (empty($all_posts[$r][5])) {?>
+                            <?php if (empty($all_posts[$r][6])) {?>
                             <div class="" >
                                 <?php   }else{
 
-                            if(count($all_posts[$r][5])>2) {?>
+                            if(count($all_posts[$r][6])>2) {?>
                             <div class="scrollable" style="height: calc(100vh - 18px);">
                             <?php   }else{ ?>
                                 <div class="" >
                             <?php   } }?>
 
-                         <?php  $counter=5 ;while(true){
+                         <?php  $counter=6 ;while(true){
                              if (empty($all_posts[$r][$counter])) {
                                  break;
                              }
@@ -270,9 +299,9 @@ $all_posts=Metier_get_All_posts();
                                             <img class="media-object" src="<?php echo $_SESSION["img"] ;?>">
                                         </a>
                                         <div class="input-group input-group-in no-border">
-                                            <input class="form-control" placeholder="write comment...">
+                                            <input class="form-control comment_value" id="" placeholder="write comment...">
                                             <div class="input-group-btn">
-                                                <button type="submit" class="btn">
+                                                <button  class="btn " onclick="test_submit('<?php echo $id_post; ?>','<?php echo $_SESSION["id"] ; ?>')">
                                                     <i class="fa fa-2x fa-chevron-circle-right"></i>
                                                 </button>
                                             </div>
@@ -290,7 +319,7 @@ $all_posts=Metier_get_All_posts();
                 </div>
 
             </div>
-
+<?php a: $d=0;?>
         </div>
         <!-- user post -->
     </div><!-- end row -->
@@ -303,6 +332,7 @@ $all_posts=Metier_get_All_posts();
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.6.8-fix/jquery.nicescroll.min.js"></script>
 <script src="../js/nicescroll.js"></script>
 <script src="../js/submit_post.js"></script>
+<script src="../js/submit_comment.js"></script>
 
 
 
@@ -328,125 +358,8 @@ $all_posts=Metier_get_All_posts();
 */
 
 
-  .chat-message {
-      padding: 60px 20px 115px;
-  }
 
-  .chats {
-      list-style: none;
-      margin: 0;
-  }
 
-  .chat-message{
-      background: #f9f9f9;
-  }
 
-  .chats li img {
-      width: 45px;
-      height: 45px;
-      border-radius: 50em;
-      -moz-border-radius: 50em;
-      -webkit-border-radius: 50em;
-  }
-
-  img {
-      max-width: 100%;
-  }
-
-  .chat-body {
-      padding-bottom: 20px;
-  }
-
-  .chats li.left .chat-body {
-      margin-left: 70px;
-      background-color: #f8f9fa;
-  }
-
-  .chats li .chat-body {
-      position: relative;
-      font-size: 11px;
-      padding: 10px;
-      border: 1px solid #f8f9fa;
-      box-shadow: 0 1px 1px rgba(0,0,0,.05);
-      -moz-box-shadow: 0 1px 1px rgba(0,0,0,.05);
-      -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
-  }
-
-  .chats li .chat-body .header {
-      padding-bottom: 5px;
-      border-bottom: 1px solid #f1f5fc;
-  }
-
-  .chats li .chat-body p {
-      margin: 0;
-  }
-
-  .chats li.left .chat-body:before {
-      position: absolute;
-      top: 10px;
-      left: -8px;
-      display: inline-block;
-      background: #f8f9fa;
-      width: 16px;
-      height: 16px;
-      border-top: 1px solid #f8f9fa;
-      border-left: 1px solid #f8f9fa;
-      content: '';
-      transform: rotate(-45deg);
-      -webkit-transform: rotate(-45deg);
-      -moz-transform: rotate(-45deg);
-      -ms-transform: rotate(-45deg);
-      -o-transform: rotate(-45deg);
-  }
-
-  .chats li.right .chat-body:before {
-      position: absolute;
-      top: 10px;
-      right: -8px;
-      display: inline-block;
-      background: #fff;
-      width: 16px;
-      height: 16px;
-      border-top: 1px solid #f1f5fc;
-      border-right: 1px solid #f1f5fc;
-      content: '';
-      transform: rotate(45deg);
-      -webkit-transform: rotate(45deg);
-      -moz-transform: rotate(45deg);
-      -ms-transform: rotate(45deg);
-      -o-transform: rotate(45deg);
-  }
-
-  .chats li {
-      margin: 15px 0;
-  }
-
-  .chats li.right .chat-body {
-      margin-right: 70px;
-      background-color: #fff;
-  }
-
-  .chat-box {
-      position: fixed;
-      bottom: 0;
-      left: 444px;
-      right: 0;
-      padding: 15px;
-      border-top: 1px solid #eee;
-      transition: all .5s ease;
-      -webkit-transition: all .5s ease;
-      -moz-transition: all .5s ease;
-      -ms-transition: all .5s ease;
-      -o-transition: all .5s ease;
-  }
-
-  .primary-font {
-      color: #3c8dbc;
-  }
-
-  a:hover, a:active, a:focus {
-      text-decoration: none;
-      outline: 0;
-  }
 </style>
 </html>

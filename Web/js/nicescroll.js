@@ -2,18 +2,11 @@
 
     $(function(){
         $(".chat").niceScroll();
+        $(".scrollable").niceScroll();
 
 
     });
     $(function(){
-        $(".scrollable").niceScroll();
-        $('#myAffix').affix({
-            offset: {
-                top: 100,
-                bottom: function () {
-                    return (this.bottom = $('.footer').outerHeight(true))
-                }
-            }
-        })
+       
 
     });

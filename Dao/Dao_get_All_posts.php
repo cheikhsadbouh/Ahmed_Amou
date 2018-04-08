@@ -45,6 +45,7 @@ function Dao_get_All_post(){
                             while ($row = mysqli_fetch_assoc($result1)) {
                                 $posts[$i][3] = $row["user_name"];
                                 $posts[$i][4] = $row["img"];
+                                $posts[$i][5] = $id_p;
                             }
                         }
                     }else{
@@ -57,7 +58,8 @@ function Dao_get_All_post(){
                     if($result2 = mysqli_query($conn, $sql2)){
                         if ($result2->num_rows > 0) {
                             $log->info("insode comments");
-                            $y=5;
+
+                            $y=6;
                            while ($row = mysqli_fetch_assoc($result2)) {
                                 $posts[$i][$y] = array();
                                 $posts[$i][$y][0]=$row["msg"];
