@@ -1,5 +1,13 @@
 $(document).ready(function() {
-
+    function loadData() {
+        $('#load_me').load('../views/profil.php', function() {
+            // if (window.reloadData != 0) {
+            //   window.clearTimeout(window.reloadData);
+            //   console.log("inside if ");
+            // }
+            // window.reloadData = window.setTimeout(loadData, 1000);
+        }).fadeIn("slow");
+    }
 
 
 
@@ -13,7 +21,9 @@ $(document).ready(function() {
             url : '/Ahmed_Amou/Metier/Metier_submit_post.php',
             success : function(data){
                 console.log('submit success.');
-                location.reload();
+                //location.reload();
+                console.log("/------------------------    loadData();  posts  -----------------------/ ");
+                loadData();
             },
             error: function (data) {
                 console.log('An error occurred.');

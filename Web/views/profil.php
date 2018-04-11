@@ -12,7 +12,7 @@ ini_set('display_errors', 1);
 
 require(dirname( dirname(dirname(__FILE__))).'/Metier/Metier_session_checker.php');
 require(dirname( dirname(dirname(__FILE__))).'/Metier/Metier_get_All_posts.php');
-$all_posts=Metier_get_All_posts();
+$all_posts=array_reverse(Metier_get_All_posts());
 
 ?>
 
@@ -33,6 +33,7 @@ $all_posts=Metier_get_All_posts();
     <link href="../css/post_design.css" rel="stylesheet">
     <link href="../css/comment.css" rel="stylesheet">
 
+
     <link href="../css/profil_user.css" rel="stylesheet">
     <!-- Custom Fonts -->
 
@@ -44,7 +45,7 @@ $all_posts=Metier_get_All_posts();
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-<body>
+<body id="load_me">
 
 <nav class="navbar navbar-default">
     <div class="container">
@@ -79,25 +80,12 @@ $all_posts=Metier_get_All_posts();
                 <li class="active"><a href="../">Default <span class="sr-only">(current)</span></a></li>
                 <li><a href="../navbar-static-top/">Static top</a></li>
                 <li><a href="#"  data-toggle="modal" data-target="#login-Modal">Fixed top</a></li>
-                <li id="generique"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="fa  fa-2x fa-bell-o"></i><span class="badge">4</span></a>
-                    <ul class="dropdown-menu  chats" style="width: 308px;">
+                <li id="generique" onclick="clear_badge_0()"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="fa  fa-2x fa-bell-o"></i><span class="badge"></span></a>
+                    <ul class="dropdown-menu   scroll_notif chats" style="width: 308px; height: calc(50vh - 9px);
+ overflow: hidden;
+    outline: none;">
 
-                         <!--   <li class="left clearfix">
-                    	<span class="chat-img pull-left">
-                    		<img src="../notification_sound/notification.mp3" alt="User Avatar">
-                    	</span>
-                                <div class="chat-body clearfix">
-                                    <div class="header">
-                                        <strong class="primary-font">John Doe</strong>
-                                        <small class="pull-right text-muted"><i class="fa fa-clock-o"></i> 12 mins ago</small>
-                                    </div>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    </p>
-                                </div>
-                            </li>
 
-                        <li role="separator" class="divider"></li>-->
 
                     </ul>
                 </li>
@@ -230,7 +218,7 @@ $all_posts=Metier_get_All_posts();
                                 <?php   }else{
 
                             if(count($all_posts[$r][6])>2) {?>
-                            <div class="scrollable" style="height: calc(100vh - 18px);">
+                            <div class="scrollable" style="height: calc(30vh - 9px);">
                             <?php   }else{ ?>
                                 <div class="" >
                             <?php   } }?>
@@ -294,7 +282,7 @@ $all_posts=Metier_get_All_posts();
                         <div class="panel-footer">
                             <div class="row">
                                 <div class="col-xs-12">
-                                    <form action="#">
+
                                         <a class="kit-avatar kit-avatar-28 no-border pull-left" href="#">
                                             <img class="media-object" src="<?php echo $_SESSION["img"] ;?>">
                                         </a>
@@ -306,7 +294,7 @@ $all_posts=Metier_get_All_posts();
                                                 </button>
                                             </div>
                                         </div>
-                                    </form>
+
                                 </div>
 
 

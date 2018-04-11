@@ -3,6 +3,7 @@
     $(function(){
         $(".chat").niceScroll();
         $(".scrollable").niceScroll();
+        $(".scroll_notif").niceScroll();
 
 
     });

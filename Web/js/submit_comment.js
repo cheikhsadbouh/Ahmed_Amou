@@ -6,19 +6,9 @@ $(document).ready(function() {
 
 
 
-  /*  $('.submit_comment').bind('click', function(e) {
-        e.preventDefault();
-
-        for(var i = 0; i < $(".comment_value").length; i++){
-            console.log($($(".comment_value")[i]).val());
-        }
-            //console.log($(".comment_value").serialize());
-            console.log("btn");
-
-    });*/
-
 
 });
+var badge=1;
 function submit_comment(id_post,id_user,comment){
 
 
@@ -27,61 +17,12 @@ function submit_comment(id_post,id_user,comment){
         data: {'comment':comment,'id_post':id_post,'iduser':id_user},
         url : '/Ahmed_Amou/Metier/Metier_submit_comment.php',
         success : function(data){
-            console.log('submit success.');
+            console.log('submit comment  success.');
+            console.log("/------------------------    loadData(); comments  -----------------------/ ");
+            loadData();
            // location.reload();
 
-            var array = JSON.parse(data);
-            if(array.length > 0){
-                $('#generique ul').empty();
-                for (var i=array.length -1;i>=0;i--) {
-                    var check=array[i][4];
-                    $("#generique ul").append(' <li class="left clearfix">\n' +
-                        '                    \t<span class="chat-img pull-left">\n' +
-                        '                    \t\t<img src='+array[i][3]+' alt="User Avatar">\n' +
-                        '                    \t</span>\n' +
-                        '                                <div class="chat-body clearfix">\n' +
-                        '                                    <div class="header">\n' +
-                        '                                        <strong class="primary-font">'+array[i][4]+'</strong>\n' +
-                        '                                        <small class="pull-right text-muted"><i class="fa fa-clock-o"></i>'+array[i][2]+'</small>\n' +
-                        '                                    </div>\n' +
-                        '                                    <p>\n' +
-                        '                                  ' +array[i][1]+
-                        '                                    </p>\n' +
-                        '                                </div>\n' +
-                        '                            </li>');
-
-                    var unread="unread";
-                    if (check.localeCompare(unread)) {
-                        Notification.requestPermission().then(function(result){
-                            notify();
-                        });
-                        var noti_title="" +array[i][4] +"";
-                        var noti_img="" +array[i][3] +"";
-                        var noti_msg="" +array[i][1] +"";
-                        function notify() {
-                            var notification = new Notification(noti_title, {
-                                icon: noti_img,
-                                body: noti_msg
-
-                            });
-                            var s="<audio autoplay='true'> <source src='../notification_sound/notification.mp3'></audio>";
-                            $('body').append(s);
-                            notification.onclick = function () {
-                                //  window.open("");
-                            };
-                            setTimeout(notification.close.bind(notification), 30000);
-                        }
-                    }else{
-                        console.log("read");
-                    }
-
-
-
-                }
-            }else{
-console.log("array empty");
-            }
-
+//-------- return all coment and update //
 
 
 
@@ -114,3 +55,160 @@ function test_submit(id_post,id_user){
 
     }
 }
+
+
+
+
+
+(function worker() {
+
+
+        $.ajax({
+            url: '/Ahmed_Amou/Metier/Metier_get_notification.php',
+
+            success: function(data) {
+                console.log('request my notication  success.');
+                // location.reload();
+                console.log(data);
+                var array = "";
+                if(data.length > 0){
+                    var array = JSON.parse(data);
+                }
+
+                if(array.length > 0){
+                    $('#generique ul').empty();
+                    for (var i=array.length -1;i>=0;i--) {
+                        var noti_title="" +array[i][4] +"";
+                        var noti_img="" +array[i][3] +"";
+                        var noti_msg="" +array[i][1] +"";
+                        var check=array[i][0];
+                        $("#generique ul").append(' <li class="left clearfix">\n' +
+                            '                    \t<span class="chat-img pull-left">\n' +
+                            '                    \t\t<img src='+array[i][3]+' alt="User Avatar">\n' +
+                            '                    \t</span>\n' +
+                            '                                <div class="chat-body clearfix">\n' +
+                            '                                    <div class="header">\n' +
+                            '                                        <strong class="primary-font">'+array[i][4]+'</strong>\n' +
+                            '                                        <small class="pull-right text-muted"><i class="fa fa-clock-o"></i>'+array[i][2]+'</small>\n' +
+                            '                                    </div>\n' +
+                            '                                    <p>\n' +
+                            '                                  ' +array[i][1]+
+                            '                                    </p>\n' +
+                            '                                </div>\n' +
+                            '                            </li>');
+
+
+                        console.log("checker /!**********   "+check+"   *************!/");
+
+                        switch (check) {
+                            case "unread":
+                                console.log(" before   notiftitel /!**********   "+noti_title+"   *************!/");
+                                console.log("before img /!**********   "+noti_img+"   *************!/");
+                                console.log("before msg /!**********   "+noti_msg+"   *************!/");
+                                   $(".badge").html(badge);
+                                   badge++;
+                                call_notif(noti_img,noti_msg,noti_title);
+
+//----------------update to  unread ----------------/
+
+                                $.ajax({
+                                    type : 'POST',
+                                    data: {'id_notif':array[i][5]},
+                                    url : '/Ahmed_Amou/Metier/Metier_update_notification_statuts.php',
+                                    success : function(data){
+                                        console.log('update notif to unread  success.');
+                                        // location.reload();
+                                    },
+                                    error: function (data) {
+                                        console.log('An error occurred update notif to unread .');
+                                        console.log(data);
+                                    }
+
+
+                                });
+
+                                break;
+                            case "read":
+
+                                break;
+
+                        }
+
+
+
+                    }
+
+
+
+
+                }else{
+                    console.log("array empty");
+                }
+            },
+            complete: function() {
+                // Schedule the next request when the current one's complete
+                setTimeout(worker, 5000);
+            }
+        });
+
+
+
+function call_notif(noti_img,noti_msg,noti_title){
+    console.log(" inside   notiftitel /!**********   "+noti_title+"   *************!/");
+    console.log("inside img /!**********   "+noti_img+"   *************!/");
+    console.log("inside msg /!**********   "+noti_msg+"   *************!/");
+    Notification.requestPermission().then(function(result){
+        notify();
+    });
+
+    function notify() {
+        var notification = new Notification(noti_title, {
+            icon: noti_img,
+            body: noti_msg
+
+        });
+        var s="<audio autoplay='true'> <source src='../notification_sound/notification.mp3'></audio>";
+        $('body').append(s);
+        notification.onclick = function () {
+            //  window.open("");
+        };
+        // setTimeout(notification.close.bind(notification), (61 - new Date().getSeconds()) * 1000);
+
+    }
+    }
+
+
+
+})();
+
+
+function clear_badge_0() {
+    $(".badge").html("");
+    console.log("click li ");
+}
+function loadData() {
+    $('#load_me').load('../views/profil.php', function() {
+        // if (window.reloadData != 0) {
+        //   window.clearTimeout(window.reloadData);
+        //   console.log("inside if ");
+        // }
+        // window.reloadData = window.setTimeout(loadData, 1000);
+    }).fadeIn("slow");
+}
+
+
+$(document).ready(function() {
+   /* function loadData() {
+        $('#load_me').load('../views/profil.php', function() {
+           // if (window.reloadData != 0) {
+             //   window.clearTimeout(window.reloadData);
+             //   console.log("inside if ");
+           // }
+           // window.reloadData = window.setTimeout(loadData, 1000);
+        }).fadeIn("slow");
+    }
+    //window.reloadData = 0; // store timer load data on page load, which sets timeout to reload again
+   // console.log("/------------------------    loadData();  -----------------------/ ");
+    //loadData();*/
+
+});
