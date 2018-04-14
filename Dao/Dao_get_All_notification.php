@@ -24,7 +24,7 @@ function Dao_get_user_notification($id_owner_post){
         if ($result = mysqli_query($conn, $sql)) {
             if ($result->num_rows > 0) {
                 $i = 0;
-                $log->info("insode notificiton");
+              //  $log->info("insode notificiton");
                 while ($row = mysqli_fetch_assoc($result)) {
                     $id_com = $row["id_comment"];
                     $id_notif = $row["id_notification"];
@@ -33,7 +33,7 @@ function Dao_get_user_notification($id_owner_post){
                     $sql1 = "SELECT * FROM comment where   id_comment='$id_com'";
                     if ($result1 = mysqli_query($conn, $sql1)) {
                         if ($result1->num_rows > 0) {
-                            $log->info("insode comment");
+                           // $log->info("insode comment");
                             while($row = mysqli_fetch_assoc($result1)) {
                                 $notifcation[$i] = array();
                                 $notifcation[$i][0] = $statuts;
@@ -45,7 +45,7 @@ function Dao_get_user_notification($id_owner_post){
                                 $sql2 = "SELECT * FROM users where  id='$id_user'";
                                 if ($result2 = mysqli_query($conn, $sql2)) {
                                     if ($result2->num_rows > 0) {
-                                        $log->info("insode users");
+                                      //  $log->info("insode users");
                                         while ($row = mysqli_fetch_assoc($result2)) {
                                             $notifcation[$i][3] = $row["img"];
                                             $notifcation[$i][4] = $row["user_name"];

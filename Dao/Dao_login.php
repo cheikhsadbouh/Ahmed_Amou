@@ -41,7 +41,10 @@ function Dao_login($user , $pass){
                 $_SESSION['identification_N'] = $row["identification_N"];
                 $role[0] = array();
                 $role[0][0] = $row["role"];
+               $done= update_statuts();
+
             }
+
 
           //  print_r($_SESSION);
            echo json_encode($role);
@@ -57,3 +60,34 @@ function Dao_login($user , $pass){
 
 }
  //echo Dao_login('user' , '123');
+
+function update_statuts(){
+
+
+
+    $conn = open_cnxn();
+    global $log;
+
+    // Check connection
+    if (!$conn) {
+
+        $log->error("Connection failed: " . mysqli_connect_error());
+
+
+    }
+    $id=$_SESSION['id'];
+    if ($conn) {
+        $sql ="UPDATE users SET  status='online'  WHERE id='$id'  ";
+
+        if ($result= mysqli_query($conn, $sql)) {
+
+
+        }else{
+            $log->error("Error while login "  . $sql . "\n" . mysqli_error($conn));
+
+        }
+    }
+
+
+return"";
+}

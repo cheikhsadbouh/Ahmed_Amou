@@ -9,6 +9,7 @@ $(document).ready(function() {
 
 });
 var badge=1;
+var array = "";
 function submit_comment(id_post,id_user,comment){
 
 
@@ -19,7 +20,8 @@ function submit_comment(id_post,id_user,comment){
         success : function(data){
             console.log('submit comment  success.');
             console.log("/------------------------    loadData(); comments  -----------------------/ ");
-            loadData();
+           loadData();
+            //window.top.location.reload(false);
            // location.reload();
 
 //-------- return all coment and update //
@@ -57,10 +59,21 @@ function test_submit(id_post,id_user){
 }
 
 
+function chunk(str, n) {
+    var ret = [];
+    var i;
+    var len;
+    console.log("/--------------------------- INSIDE CHRUNK ------------------------------------------------------/");
+    for(i = 0, len = str.length; i < len; i += n) {
+        ret.push(str.substr(i, n))
+    }
 
+    return ret;
+}
 
 
 (function worker() {
+
 
 
         $.ajax({
@@ -70,9 +83,12 @@ function test_submit(id_post,id_user){
                 console.log('request my notication  success.');
                 // location.reload();
                 console.log(data);
-                var array = "";
+
                 if(data.length > 0){
-                    var array = JSON.parse(data);
+                     array = JSON.parse(data);
+
+
+
                 }
 
                 if(array.length > 0){
@@ -89,10 +105,10 @@ function test_submit(id_post,id_user){
                             '                                <div class="chat-body clearfix">\n' +
                             '                                    <div class="header">\n' +
                             '                                        <strong class="primary-font">'+array[i][4]+'</strong>\n' +
-                            '                                        <small class="pull-right text-muted"><i class="fa fa-clock-o"></i>'+array[i][2]+'</small>\n' +
+                            '                                        <small class="pull-right text-muted"><i class="fa fa-clock-o"></i>'+chunk(array[i][2], 29).join('\n')+'</small>\n' +
                             '                                    </div>\n' +
                             '                                    <p>\n' +
-                            '                                  ' +array[i][1]+
+                            '                                  ' +chunk(array[i][1],10).join('\n')+
                             '                                    </p>\n' +
                             '                                </div>\n' +
                             '                            </li>');
@@ -102,6 +118,8 @@ function test_submit(id_post,id_user){
 
                         switch (check) {
                             case "unread":
+                                console.log("/------------------------   INSIDE UNREAD  -----------------------/ ");
+
                                 console.log(" before   notiftitel /!**********   "+noti_title+"   *************!/");
                                 console.log("before img /!**********   "+noti_img+"   *************!/");
                                 console.log("before msg /!**********   "+noti_msg+"   *************!/");
@@ -139,6 +157,26 @@ function test_submit(id_post,id_user){
                     }
 
 
+                /*    var badg= $(".badge").text();
+                    for(var ii=array.length -1;ii>=0;ii--){
+
+                        if(array[ii][0] == "unread"){
+                            console.log("/------------------------   BEFORE  loadData();    -----------------------/ ");
+                            window.localStorage.setItem("notif", badge-1);
+                           // window.butt.location.reload(false);
+                           // document.location.reload(false);
+                            $(".badge").html(window.localStorage.getItem("notif"));
+                            console.log(badg);
+                            break;
+                            //loadData();
+                         // window.top.location.reload(false);
+                           //window.location.reload(true);
+                           /// $(".badge").html(badg);
+                            //window.location = window.location;
+                            console.log("/------------------------    AFTER loadData();    -----------------------/ ");
+
+                        }
+                    }*/
 
 
                 }else{
@@ -146,7 +184,9 @@ function test_submit(id_post,id_user){
                 }
             },
             complete: function() {
-                // Schedule the next request when the current one's complete
+                // Schedule the next request when the current one's
+
+
                 setTimeout(worker, 5000);
             }
         });
@@ -184,7 +224,22 @@ function call_notif(noti_img,noti_msg,noti_title){
 
 function clear_badge_0() {
     $(".badge").html("");
+    //$(".badge").html("");
+   // window.top.location.reload(true);
+    //loadData();
+   // document.location.reload(false);
+    if("" !=$(".badge").html() ){
+        $(".badge").html("");
+      //  document.location.reload(false);
+
+       //loadData();
+
+      //  window.top.location.reload(false);
+
+    }
     console.log("click li ");
+
+
 }
 function loadData() {
     $('#load_me').load('../views/profil.php', function() {
@@ -193,7 +248,9 @@ function loadData() {
         //   console.log("inside if ");
         // }
         // window.reloadData = window.setTimeout(loadData, 1000);
-    }).fadeIn("slow");
+        console.log("/------------------------   inside    -----------------------/ ");
+
+    }).fadeIn("show");
 }
 
 

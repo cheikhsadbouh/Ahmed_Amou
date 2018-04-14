@@ -47,7 +47,7 @@ $all_posts=array_reverse(Metier_get_All_posts());
 </head>
 <body id="load_me">
 
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default ">
     <div class="container">
         <div class="navbar-header ">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -114,15 +114,12 @@ $all_posts=array_reverse(Metier_get_All_posts());
                         <span><i class="fa fa-fw fa-usd"></i> Best street No. 554/7A<br>949 01 Florida<br>United States</span>
                     </div>
                     <div class="socialIcons clearfix">
-                        <a href="#" title="#" class="fb">
-                            <i class="fa fa-facebook"></i>
-                        </a>
-                        <a href="#" title="#" class="twitter">
-                            <i class="fa fa-twitter"></i>
-                        </a>
-                        <a href="#" title="#" class="google-plus">
-                            <i class="fa fa-google-plus"></i>
-                        </a>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <button class="ripple">Click !</button>
+                            </div>
+                            <div class="col-xs-6"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -133,19 +130,11 @@ $all_posts=array_reverse(Metier_get_All_posts());
             <div class="row">
                 <div class="col-xs-12 col-lg-pull-5">
                     <div class="col-inside-lg decor-default chat" style="overflow: hidden; min-width: 250px; outline: none;" tabindex="5000">
-                        <div class="chat-users">
+                        <div class="chat-users" id="users">
                             <h6>Online</h6>
+                            <ul style="display: contents;list-style-type: none;">
 
-                            <?php  for($i=0;$i<20;$i++){?>
-                                <div class="user">
-                                    <div class="avatar">
-                                        <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="User name">
-                                        <div class="status off"></div>
-                                    </div>
-                                    <div class="name">User name</div>
-                                    <div class="mood">User mood</div>
-                                </div>
-                            <?php  }?>
+                            </ul>
 
                         </div>
                     </div>
@@ -321,6 +310,7 @@ $all_posts=array_reverse(Metier_get_All_posts());
 <script src="../js/nicescroll.js"></script>
 <script src="../js/submit_post.js"></script>
 <script src="../js/submit_comment.js"></script>
+<script src="../js/online_user.js"></script>
 
 
 
@@ -346,7 +336,18 @@ $all_posts=array_reverse(Metier_get_All_posts());
 */
 
 
-
+  .ripple {
+      background-position: center;
+      transition: background 0.5s;
+  }
+  .ripple:hover {
+      background: var(--focus-color) radial-gradient(circle, transparent 1%, var(--focus-color) 1%) center/15000%;
+  }
+  .ripple:active {
+      background-color: var(--active-color);
+      background-size: 100%;
+      transition: background 0s;
+  }
 
 
 </style>

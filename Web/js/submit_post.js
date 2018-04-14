@@ -23,7 +23,8 @@ $(document).ready(function() {
                 console.log('submit success.');
                 //location.reload();
                 console.log("/------------------------    loadData();  posts  -----------------------/ ");
-                loadData();
+                //loadData();
+                window.top.location.reload(false);
             },
             error: function (data) {
                 console.log('An error occurred.');
