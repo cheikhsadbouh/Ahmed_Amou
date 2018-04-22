@@ -1,0 +1,35 @@
+[ripple] {
+    position: relative;
+    overflow: hidden;
+    -webkit-transition: box-shadow .4s;
+    -moz-transition: box-shadow .4s;
+    -ms-transition: box-shadow .4s;
+    -o-transition: box-shadow .4s;
+    transition: box-shadow .4s;
+    cursor: inherit;
+}
+
+[ripple] .touch {
+    background: rgba(255, 255, 255, 0.3);
+    pointer-events: none;
+    border-radius: 100%;
+}
+button[type="submit"] {
+    position: relative;
+    float: right;
+    font-family: inherit;
+    font-weight: 100;
+    font-size: 15px;
+    border: 0;
+    margin: -3px 0px;
+    padding: 5px 15px;
+    border-radius: 3px;
+    cursor: pointer;
+    background: rgb(3, 169, 245);
+    color: #fff;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
+}
+
+button[type="submit"]:focus {
+    outline: none;
+}

@@ -38,7 +38,7 @@ function Dao_get_All_post(){
                     $posts[$i][2] = $row["likes"];
                     $id = $row["id_user"];
 
-                    $sql1 ="SELECT * FROM users where  id='$id' ";
+                    $sql1 ="SELECT * FROM users where   id='$id' ";
                     if($result1 = mysqli_query($conn, $sql1)){
                         if ($result1->num_rows > 0) {
                             $log->info("insode user post");
@@ -46,6 +46,7 @@ function Dao_get_All_post(){
                                 $posts[$i][3] = $row["user_name"];
                                 $posts[$i][4] = $row["img"];
                                 $posts[$i][5] = $id_p;
+                                $posts[$i][6] = $row["category"];
                             }
                         }
                     }else{
@@ -59,7 +60,7 @@ function Dao_get_All_post(){
                         if ($result2->num_rows > 0) {
                             $log->info("insode comments");
 
-                            $y=6;
+                            $y=7;
                            while ($row = mysqli_fetch_assoc($result2)) {
                                 $posts[$i][$y] = array();
                                 $posts[$i][$y][0]=$row["msg"];

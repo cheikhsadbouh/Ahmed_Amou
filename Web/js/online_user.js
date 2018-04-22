@@ -1,6 +1,6 @@
 (function worker() {
 
-
+var array1;
 
     $.ajax({
         url: '/Ahmed_Amou/Metier/Metier_get_status_users.php',
@@ -10,24 +10,24 @@
             console.log(data);
 
             if(data.length > 0){
-                array = JSON.parse(data);
+                array1 = JSON.parse(data);
             }
 
-            if(array.length > 0){
-                $('#users ul').empty();
+            if(array1.length > 0){
+                $('#users > ul').empty();
 
-                for (var i=array.length -1;i>=0;i--) {
-                    var check=array[i][2];
+                for (var i=array1.length -1;i>=0;i--) {
+                    var check=array1[i][2];
                     switch (check) {
                         case "online":
-                            $("#users ul").append(' <li>  ' +
+                            $("#users > ul").append(' <li>  ' +
                                 '                                <div class="user">\n' +
                                 '                                    <div class="avatar">\n' +
-                                '                                        <img src="'+array[i][1]+'" alt="User name">\n' +
+                                '                                        <img src="'+array1[i][1]+'" alt="User name">\n' +
                                 '                                        <div class="status online"></div>\n' +
                                 '                                    </div>\n' +
-                                '                                    <div class="name">'+array[i][0]+'</div>\n' +
-                                '                                    <div class="mood">'+array[i][3]+'</div>\n' +
+                                '                                    <div class="name">'+array1[i][0]+'</div>\n' +
+                                '                                    <div class="mood">'+array1[i][3]+'</div>\n' +
                                 '                                </div></li>');
 
 
@@ -35,14 +35,14 @@
 
                             break;
                         case "offline":
-                            $("#users ul").append('   ' +
+                            $("#users > ul").append('   ' +
                                 '                              <li>  <div class="user">\n' +
                                 '                                    <div class="avatar">\n' +
-                                '                                        <img src="'+array[i][1]+'" alt="User name">\n' +
+                                '                                        <img src="'+array1[i][1]+'" alt="User name">\n' +
                                 '                                        <div class="status offline"></div>\n' +
                                 '                                    </div>\n' +
-                                '                                    <div class="name">'+array[i][0]+'</div>\n' +
-                                '                                    <div class="mood">'+array[i][3]+'</div>\n' +
+                                '                                    <div class="name">'+array1[i][0]+'</div>\n' +
+                                '                                    <div class="mood">'+array1[i][3]+'</div>\n' +
                                 '                                </div></li>');
 
                             break;
@@ -65,7 +65,7 @@
             // Schedule the next request when the current one's
 
 
-            setTimeout(worker, 5000);
+            setTimeout(worker, 10000);
         }
     });
 

@@ -20,10 +20,10 @@ function submit_comment(id_post,id_user,comment){
         success : function(data){
             console.log('submit comment  success.');
             console.log("/------------------------    loadData(); comments  -----------------------/ ");
-           loadData();
+           //loadData();
             //window.top.location.reload(false);
            // location.reload();
-
+            window.top.location.reload(false);
 //-------- return all coment and update //
 
 
@@ -92,15 +92,16 @@ function chunk(str, n) {
                 }
 
                 if(array.length > 0){
-                    $('#generique ul').empty();
+                    $('#generique > ul').empty();
                     for (var i=array.length -1;i>=0;i--) {
+
                         var noti_title="" +array[i][4] +"";
                         var noti_img="" +array[i][3] +"";
                         var noti_msg="" +array[i][1] +"";
                         var check=array[i][0];
-                        $("#generique ul").append(' <li class="left clearfix">\n' +
+                        $("#generique > ul").append(' <li class="left clearfix">\n' +
                             '                    \t<span class="chat-img pull-left">\n' +
-                            '                    \t\t<img src='+array[i][3]+' alt="User Avatar">\n' +
+                            '                    \t\t<img src='+array[i][3]+' alt="">\n' +
                             '                    \t</span>\n' +
                             '                                <div class="chat-body clearfix">\n' +
                             '                                    <div class="header">\n' +
@@ -157,26 +158,7 @@ function chunk(str, n) {
                     }
 
 
-                /*    var badg= $(".badge").text();
-                    for(var ii=array.length -1;ii>=0;ii--){
 
-                        if(array[ii][0] == "unread"){
-                            console.log("/------------------------   BEFORE  loadData();    -----------------------/ ");
-                            window.localStorage.setItem("notif", badge-1);
-                           // window.butt.location.reload(false);
-                           // document.location.reload(false);
-                            $(".badge").html(window.localStorage.getItem("notif"));
-                            console.log(badg);
-                            break;
-                            //loadData();
-                         // window.top.location.reload(false);
-                           //window.location.reload(true);
-                           /// $(".badge").html(badg);
-                            //window.location = window.location;
-                            console.log("/------------------------    AFTER loadData();    -----------------------/ ");
-
-                        }
-                    }*/
 
 
                 }else{

@@ -12,8 +12,13 @@ ini_set('display_errors', 1);
 
 require(dirname( dirname(dirname(__FILE__))).'/Metier/Metier_session_checker.php');
 require(dirname( dirname(dirname(__FILE__))).'/Metier/Metier_get_All_posts.php');
-$all_posts=array_reverse(Metier_get_All_posts());
+require(dirname( dirname(dirname(__FILE__))).'/Metier/Metier_get_user_info.php');
+$all_posts=Metier_get_All_posts();
+$user_info=Metier_get_user_info();
 
+if(!empty($all_posts)){
+    $all_posts=array_reverse(Metier_get_All_posts());
+}
 ?>
 
 <!DOCTYPE html>
@@ -32,6 +37,10 @@ $all_posts=array_reverse(Metier_get_All_posts());
     <link href="../css/user_post_component.css" rel="stylesheet">
     <link href="../css/post_design.css" rel="stylesheet">
     <link href="../css/comment.css" rel="stylesheet">
+    <link href="../css/ripple_button.css" rel="stylesheet">
+    <link href="../css/avatar.css" rel="stylesheet">
+    <link href="../css/upload_file.css" rel="stylesheet">
+    <link href="../css/input_material_design.css" rel="stylesheet">
 
 
     <link href="../css/profil_user.css" rel="stylesheet">
@@ -46,6 +55,63 @@ $all_posts=array_reverse(Metier_get_All_posts());
     <![endif]-->
 </head>
 <body id="load_me">
+<!-- Modal -->
+<div class="   modal fade" id="primary" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header modal-header-primary">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h1><i class="fa fa-2x fa-pencil-square-o"></i> Update Info</h1>
+            </div>
+            <div class="modal-body">
+<br>
+                <form class="row" id="form_update">
+
+                    <div class="group  col-lg-8 col-lg-push-2 col-md-8 col-md-push-2 col-sm-8 col-sm-push-2">
+                        <input type="text"   name="tel" id="TEL" required>
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label>TEl</label>
+                    </div>
+
+                    <div class="group   col-lg-8 col-lg-push-2  col-md-8 col-md-push-2 col-sm-8 col-sm-push-2">
+                        <input type="text"   name="email" id="EMAIL" required>
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label>Email</label>
+                    </div>
+
+                    <div class="group   col-lg-8 col-lg-push-2  col-md-8 col-md-push-2 col-sm-8 col-sm-push-2">
+
+                        <a href="#" title="#" class="editImage">
+                            <input  type="file"  name="cv" class="upfile" id="cv"  accept="application/msword,
+  application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+                            <i class="fa  fa-2x fa-upload">
+
+                            </i>
+
+                        </a>
+
+                        <span class="filename"> file name</span>
+
+
+
+                    </div>
+
+                </form>
+                <div class="alert alert-danger" role="alert" style="display:none;" id="alert"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-default pull-right" id="buttton_sub">submit </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- Modal -->
+
+
+
 
 <nav class="navbar navbar-default ">
     <div class="container">
@@ -85,7 +151,10 @@ $all_posts=array_reverse(Metier_get_All_posts());
  overflow: hidden;
     outline: none;">
 
+                             <li> <div class="jumbotron">
+                                     <h5> no notifiction </h5>
 
+                                 </div> </li>
 
                     </ul>
                 </li>
@@ -101,24 +170,32 @@ $all_posts=array_reverse(Metier_get_All_posts());
 
             <div class="userProfileInfo">
                 <div class="image text-center">
-                    <img src="../img/avatar6.png" alt="#" class="img-responsive image">
+                    <img  alt="user img"  src="<?php   echo $user_info[0][1]  ;?>" class="img-responsive image" >
+
                     <a href="#" title="#" class="editImage">
-                        <i class="fa fa-camera"></i>
+                        <input  type="file"  class="upload" id="fileToUpload">
+                        <i class="fa fa-camera">
+
+                        </i>
                     </a>
                 </div>
                 <div class="box">
-                    <div class="name"><strong>John Doe</strong></div>
+                    <div class="name"><strong><?php   echo $user_info[0][0]  ;?></strong></div>
                     <div class="info">
-                        <span><i class="fa fa-fw fa-clock-o"></i> <a href="tel:+4210555888777" title="#">+421 (0) 555 888 777</a></span>
-                        <span><i class="fa fa-fw fa-list-alt"></i> <a href="#" title="#">name@example.com</a></span>
-                        <span><i class="fa fa-fw fa-usd"></i> Best street No. 554/7A<br>949 01 Florida<br>United States</span>
+                        <span><i class="fa fa-phone-square fa-1x" aria-hidden="true"></i> <a href="#" title="#"><?php   echo $user_info[0][4]  ;?></a></span>
+                        <span><i class="fa fa-envelope fa-1x" aria-hidden="true"></i> <a href="#" title="#"><?php   echo $user_info[0][2]  ;?></a></span>
+                        <span><i class="fa fa-download fa-1x" aria-hidden="true"></i> <a href="<?php   echo $user_info[0][3]  ;?>" target="_blank" >CV</a></span>
                     </div>
                     <div class="socialIcons clearfix">
                         <div class="row">
-                            <div class="col-xs-6">
-                                <button class="ripple">Click !</button>
+                            <div class="col-xs-4">
+                                <button id="logout"  onclick="logout('<?php echo $_SESSION["id"] ;?>')" type="submit" ripple><i class="fa fa-1x fa-sign-out"></i> </button>
                             </div>
-                            <div class="col-xs-6"></div>
+                            <div class="col-xs-4">
+                            </div>
+                            <div class="col-xs-4">
+                                <button id="update_info_user" type="submit" ripple data-toggle="modal" data-target="#primary" > <i class="fa fa-1x fa-edit"></i></button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -183,7 +260,7 @@ $all_posts=array_reverse(Metier_get_All_posts());
                                 <i class="fa fa-calendar"></i><br><?php echo $all_posts[$r][1]; ?>
                             </div>
                             <div><strong><?php echo $all_posts[$r][3]; ?></strong></div>
-                            <div class="small"><i class="fa fa-map-marker"></i> Medellin, Colombia</div>
+                            <div class="small"><i class="fa fa-anchor"></i>  <?php echo $all_posts[$r][6]; ?> </div>
                         </div>
                         <div class="panel-body">
                             <?php if(str_word_count($all_posts[$r][0])>180) { ?>
@@ -197,22 +274,22 @@ $all_posts=array_reverse(Metier_get_All_posts());
                              <?php } ?>
                             <div class="actions">
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-link"><i class="fa fa-thumbs-o-up"></i> Like</button>
+                                    <button type="button" class="btn btn-link" onclick="post_like('<?php echo  $_SESSION["id"]; ?>','<?php echo $id_post  ; ?>','<?php   echo $all_posts[$r][2]; ?>')"><i class="fa fa-thumbs-o-up"></i> Like</button>
                                     <button type="button" class="btn btn-link"><i class="fa fa-share"></i> Share</button>
                                 </div>
-                                <div class="pull-right"><strong><?php   echo $all_posts[$r][2]; ?></strong>  liked this</div>
+                                <div class="pull-right"><strong id="increment_like"><?php   echo $all_posts[$r][2]; ?></strong>  liked this</div>
                             </div>
-                            <?php if (empty($all_posts[$r][6])) {?>
+                            <?php if (empty($all_posts[$r][7])) {?>
                             <div class="" >
                                 <?php   }else{
 
-                            if(count($all_posts[$r][6])>2) {?>
+                            if(count($all_posts[$r][7])>2) {?>
                             <div class="scrollable" style="height: calc(30vh - 9px);">
                             <?php   }else{ ?>
                                 <div class="" >
                             <?php   } }?>
 
-                         <?php  $counter=6 ;while(true){
+                         <?php  $counter=7 ;while(true){
                              if (empty($all_posts[$r][$counter])) {
                                  break;
                              }
@@ -273,7 +350,7 @@ $all_posts=array_reverse(Metier_get_All_posts());
                                 <div class="col-xs-12">
 
                                         <a class="kit-avatar kit-avatar-28 no-border pull-left" href="#">
-                                            <img class="media-object" src="<?php echo $_SESSION["img"] ;?>">
+                                            <img class="media-object" src="<?php   echo $all_posts[0][4];?>">
                                         </a>
                                         <div class="input-group input-group-in no-border">
                                             <input class="form-control comment_value" id="" placeholder="write comment...">
@@ -302,6 +379,7 @@ $all_posts=array_reverse(Metier_get_All_posts());
     </div><!-- end row -->
 </div><!-- end container-->
 
+
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -311,6 +389,12 @@ $all_posts=array_reverse(Metier_get_All_posts());
 <script src="../js/submit_post.js"></script>
 <script src="../js/submit_comment.js"></script>
 <script src="../js/online_user.js"></script>
+<script src="../js/ripple_event.js"></script>
+<script src="../js/logout.js"></script>
+<script src="../js/like_post.js"></script>
+<script src="../js/avatar.js"></script>
+<script src="../js/submit_update_info.js"></script>
+<script src="../js/upload_user_img.js"></script>
 
 
 
@@ -336,19 +420,35 @@ $all_posts=array_reverse(Metier_get_All_posts());
 */
 
 
-  .ripple {
-      background-position: center;
-      transition: background 0.5s;
+
+  .modal-header-primary {
+      color:#fff;
+      padding:9px 15px;
+      border-bottom:1px solid #eee;
+      background-color: #428bca;
+      -webkit-border-top-left-radius: 5px;
+      -webkit-border-top-right-radius: 5px;
+      -moz-border-radius-topleft: 5px;
+      -moz-border-radius-topright: 5px;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
   }
-  .ripple:hover {
-      background: var(--focus-color) radial-gradient(circle, transparent 1%, var(--focus-color) 1%) center/15000%;
+  .modal-backdrop.in {
+      opacity: 0.9;
   }
-  .ripple:active {
-      background-color: var(--active-color);
-      background-size: 100%;
-      transition: background 0s;
-  }
+
+
+
+
+
 
 
 </style>
+
+<script>
+    // button ripple effect from @ShawnSauce 's pen https://codepen.io/ShawnSauce/full/huLEH
+
+
+
+</script>
 </html>
