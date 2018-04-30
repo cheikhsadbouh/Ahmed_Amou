@@ -14,9 +14,10 @@ require(dirname( dirname(dirname(__FILE__))).'/Metier/Metier_session_checker.php
 require(dirname( dirname(dirname(__FILE__))).'/Metier/Metier_get_All_posts.php');
 require(dirname( dirname(dirname(__FILE__))).'/Metier/Metier_get_user_info.php');
 $all_posts=Metier_get_All_posts();
-$user_info=Metier_get_user_info();
+
 
 if(!empty($all_posts)){
+    $user_info=Metier_get_user_info();
     $all_posts=array_reverse(Metier_get_All_posts());
 }
 ?>
@@ -67,43 +68,37 @@ if(!empty($all_posts)){
 <br>
                 <form class="row" id="form_update">
 
-                    <div class="group  col-lg-8 col-lg-push-2 col-md-8 col-md-push-2 col-sm-8 col-sm-push-2">
-                        <input type="text"   name="tel" id="TEL" required>
+                    <div class="group   col-xs-12 col-lg-8 col-lg-push-2 col-md-8 col-md-push-2 col-sm-8 col-sm-push-2">
+                        <input type="text" class=""   name="tel" id="TEL" required>
                         <span class="highlight"></span>
                         <span class="bar"></span>
                         <label>TEl</label>
                     </div>
 
-                    <div class="group   col-lg-8 col-lg-push-2  col-md-8 col-md-push-2 col-sm-8 col-sm-push-2">
-                        <input type="text"   name="email" id="EMAIL" required>
+                    <div class="group  col-xs-12  col-lg-8 col-lg-push-2  col-md-8 col-md-push-2 col-sm-8 col-sm-push-2">
+                        <input type="text"  class=""  name="email" id="EMAIL" required>
                         <span class="highlight"></span>
                         <span class="bar"></span>
                         <label>Email</label>
                     </div>
-
+<div class="clearfix"></div>
                     <div class="group   col-lg-8 col-lg-push-2  col-md-8 col-md-push-2 col-sm-8 col-sm-push-2">
-
                         <a href="#" title="#" class="editImage">
-                            <input  type="file"  name="cv" class="upfile" id="cv"  accept="application/msword,
-  application/vnd.openxmlformats-officedocument.wordprocessingml.document">
-                            <i class="fa  fa-2x fa-upload">
-
-                            </i>
-
+                            <input  type="file"  name="cv" class="upfile" id="cv"  accept="application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+                            <i class="fa  fa-2x fa-upload"></i>
                         </a>
-
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
                         <span class="filename"> file name</span>
-
-
-
                     </div>
 
                 </form>
+
                 <div class="alert alert-danger" role="alert" style="display:none;" id="alert"></div>
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-default pull-right" id="buttton_sub">submit </button>
+                <button  ripple class="btn  pull-left my_btn" data-dismiss="modal">Close</button>
+                <button  ripple class="btn  pull-right my_btn" id="buttton_sub">submit </button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
@@ -122,11 +117,11 @@ if(!empty($all_posts)){
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand  " href="#">Project name</a>
+            <a class="navbar-brand   " href="#">Project name</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
+            <ul class="nav navbar-nav ">
+                <li class="active" style="height: 52px;"><a href="#" style="height: 53px;">Home</a></li>
                 <li><a href="#">About</a></li>
                 <li><a href="#">Contact</a></li>
                 <li class="dropdown">
@@ -142,25 +137,35 @@ if(!empty($all_posts)){
                     </ul>
                 </li>
             </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li class="active"><a href="../">Default <span class="sr-only">(current)</span></a></li>
-                <li><a href="../navbar-static-top/">Static top</a></li>
-                <li><a href="#"  data-toggle="modal" data-target="#login-Modal">Fixed top</a></li>
-                <li id="generique" onclick="clear_badge_0()"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="fa  fa-2x fa-bell-o"></i><span class="badge"></span></a>
-                    <ul class="dropdown-menu   scroll_notif chats" style="width: 308px; height: calc(50vh - 9px);
+
+                <ul class=" col-xs-1  nav navbar-nav navbar-right">
+                    <!-- <li class="active"><a href="../">Default <span class="sr-only">(current)</span></a></li>
+                     <li><a href="../navbar-static-top/">Static top</a></li>
+                     <li><a href="#"  data-toggle="modal" data-target="#login-Modal">Fixed top</a></li>-->
+                    <li  id="generique" onclick="clear_badge_0()"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="fa  fa-2x fa-bell-o"></i><span class="badge" style="
+background-color: #fdfdfd;color: #d00909;"></span></a>
+                        <ul class="dropdown-menu   col-xs-12 scroll_notif chats" style="width: 354px; height: calc(50vh - 9px);
  overflow: hidden;
-    outline: none;">
+    outline: none;     border-radius: 5px;
+    margin-top: 7px;">
 
-                             <li> <div class="jumbotron">
-                                     <h5> no notifiction </h5>
+                            <li> <div class="jumbotron" style="    border-radius: 1px;
+    background-color: #F4F4FE;
+    color: #3c5eb5;
+    height: 118px;
+    margin-top: 72px;">
+                                    <span style="font-size: xx-large;
+    font-weight: bold;"> no notifiction </span>
 
-                                 </div> </li>
+                                </div> </li>
 
-                    </ul>
-                </li>
+                        </ul>
+                    </li>
 
 
-            </ul>
+                </ul>
+
+
         </div><!--/.nav-collapse -->
     </div><!--/.container-fluid -->
 </nav>
@@ -182,9 +187,9 @@ if(!empty($all_posts)){
                 <div class="box">
                     <div class="name"><strong><?php   echo $user_info[0][0]  ;?></strong></div>
                     <div class="info">
-                        <span><i class="fa fa-phone-square fa-1x" aria-hidden="true"></i> <a href="#" title="#"><?php   echo $user_info[0][4]  ;?></a></span>
-                        <span><i class="fa fa-envelope fa-1x" aria-hidden="true"></i> <a href="#" title="#"><?php   echo $user_info[0][2]  ;?></a></span>
-                        <span><i class="fa fa-download fa-1x" aria-hidden="true"></i> <a href="<?php   echo $user_info[0][3]  ;?>" target="_blank" >CV</a></span>
+                        <span ><i class="fa fa-phone-square fa-1x" aria-hidden="true" style="color: #3c5eb5;"></i> <a href="#" title="#" class="user_info_1"><?php   echo $user_info[0][4]  ;?></a></span>
+                        <span><i class="fa fa-envelope fa-1x" aria-hidden="true" style="color: #3c5eb5;"></i> <a href="#" title="#" class="user_info_1"><?php   echo $user_info[0][2]  ;?></a></span>
+                        <span><i class="fa fa-download fa-1x" aria-hidden="true" style="color: #3c5eb5;"></i> <a href="<?php   echo $user_info[0][3]  ;?>"  class="user_info_1" target="_blank" >CV</a></span>
                     </div>
                     <div class="socialIcons clearfix">
                         <div class="row">
@@ -201,6 +206,7 @@ if(!empty($all_posts)){
                 </div>
             </div>
         </div>
+
         <!--user info -->
         <div class=" col-xs-12 col-md-2 col-md-push-7  col-lg-2 ">
             <div class="clearfix"></div>
@@ -220,8 +226,9 @@ if(!empty($all_posts)){
 <div class="clearfix"></div>
         </div>
         <!--user  online user  -->
+
         <div class="col-xs-12 col-md-7  col-md-pull-2 col-lg-6 col-lg-pull-2">
-            <div class="row activity">
+            <div class="row activity" style="    margin-top: 7px;">
 
                 <div class="col-md-12">
                     <div class="timeline-panel panel fade in panel-default panel-fill" data-fill-color="true" data-init-panel="true">
@@ -241,7 +248,7 @@ if(!empty($all_posts)){
                                 <button type="button" class="btn btn-link"><i class="fa fa-smile-o"></i></button>
                             </div>
                             <div class="pull-right">
-                                <button type="submit" id="submit_post" class="btn btn-success">Post</button>
+                                <button  id="submit_post"  ripple class="btn  my_btn">Post</button>
                             </div>
                         </div><!-- /.panel-footer -->
                     </div><!-- /.timeline-panel.panel -->
@@ -277,7 +284,7 @@ if(!empty($all_posts)){
                                     <button type="button" class="btn btn-link" onclick="post_like('<?php echo  $_SESSION["id"]; ?>','<?php echo $id_post  ; ?>','<?php   echo $all_posts[$r][2]; ?>')"><i class="fa fa-thumbs-o-up"></i> Like</button>
                                     <button type="button" class="btn btn-link"><i class="fa fa-share"></i> Share</button>
                                 </div>
-                                <div class="pull-right"><strong id="increment_like"><?php   echo $all_posts[$r][2]; ?></strong>  liked this</div>
+                                <div class="pull-right"><strong id="increment_like"><?php   echo $all_posts[$r][2]; ?></strong> <span style="color:rgb(60, 94, 181);">liked this</span>  </div>
                             </div>
                             <?php if (empty($all_posts[$r][7])) {?>
                             <div class="" >
@@ -350,12 +357,12 @@ if(!empty($all_posts)){
                                 <div class="col-xs-12">
 
                                         <a class="kit-avatar kit-avatar-28 no-border pull-left" href="#">
-                                            <img class="media-object" src="<?php   echo $all_posts[0][4];?>">
+                                            <img class="media-object" src="<?php   echo $user_info[0][1];?>">
                                         </a>
                                         <div class="input-group input-group-in no-border">
                                             <input class="form-control comment_value" id="" placeholder="write comment...">
                                             <div class="input-group-btn">
-                                                <button  class="btn " onclick="test_submit('<?php echo $id_post; ?>','<?php echo $_SESSION["id"] ; ?>')">
+                                                <button  class="btn  my_btn" ripple style="color:#ffffff;" onclick="test_submit('<?php echo $id_post; ?>','<?php echo $_SESSION["id"] ; ?>')">
                                                     <i class="fa fa-2x fa-chevron-circle-right"></i>
                                                 </button>
                                             </div>
@@ -377,7 +384,12 @@ if(!empty($all_posts)){
         </div>
         <!-- user post -->
     </div><!-- end row -->
-</div><!-- end container-->
+</div>
+
+        <!-- end container-->
+    </div>
+</div>
+
 
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -439,8 +451,44 @@ if(!empty($all_posts)){
 
 
 
+  .navbar-default {
+      background-color: #3C5EB5;
+      border-color: #3C5EB5;
 
+      border-radius: 0px;
+      border-top-color: #fff;
+      border-top-width: 6px;
+  }
+  .navbar-default .navbar-nav>li>a {
+      color: #fff;
+  }
+  .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
+      color: #3C5EB5;
+      font-weight: bolder;
+      background-color: #ffffff;
+      height: unset;
+      border-bottom: #F4F4FE;
+      border-bottom-style: inset;
 
+  }
+  .navbar-default .navbar-nav>li>a {
+      color: #fff;
+      font-weight: 800;
+
+  }
+  .chat-users h6 {
+      font-size: 24px;
+      margin: 0 0 20px;
+      /* background-color: #3C5EB5; */
+      color: #3C5EB5;
+      border-bottom-color: #3C5EB5;
+      border-bottom-style: inset;
+      /* width: -webkit-fill-available; */
+  }
+  .navbar-default .navbar-brand {
+      color: #fff;
+      font-weight: 900;
+  }
 
 
 </style>

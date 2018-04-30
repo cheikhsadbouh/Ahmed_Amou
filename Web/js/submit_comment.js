@@ -106,10 +106,10 @@ function chunk(str, n) {
                             '                                <div class="chat-body clearfix">\n' +
                             '                                    <div class="header">\n' +
                             '                                        <strong class="primary-font">'+array[i][4]+'</strong>\n' +
-                            '                                        <small class="pull-right text-muted"><i class="fa fa-clock-o"></i>'+chunk(array[i][2], 29).join('\n')+'</small>\n' +
+                            '                                        <small class="pull-right text-muted"><i class="fa fa-clock-o"></i>'+array[i][2]+'</small>\n' +
                             '                                    </div>\n' +
-                            '                                    <p>\n' +
-                            '                                  ' +chunk(array[i][1],10).join('\n')+
+                            '                                    <p class="scroll_notif">\n' +
+                            '                                  ' +array[i][1]+
                             '                                    </p>\n' +
                             '                                </div>\n' +
                             '                            </li>');

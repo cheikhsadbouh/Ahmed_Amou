@@ -179,7 +179,7 @@ a.kit-avatar {
     display: inline-block;
     width: 12px;
     height: 12px;
-    border: 2px solid #5D9CEC;
+    border: 2px solid #3c5eb5;
     border-radius: 24px;
     background-color: #fff;
     text-decoration: none;
@@ -227,6 +227,7 @@ a.kit-avatar {
 .nav>li {
     position: relative;
     display: block;
+
 }
 .nav.nav-contrast-red.nav-tabs>li>a {
     color: inherit;
@@ -250,18 +251,19 @@ a.kit-avatar {
     outline: 0;
 }
 .nav.nav-contrast-red.nav-tabs>li.active>a, .nav.nav-contrast-red.nav-tabs>li.active>a:focus, .nav.nav-contrast-red.nav-tabs>li.active>a:hover, .nav.nav-contrast-red.nav-tabs>li>a:focus, .nav.nav-contrast-red.nav-tabs>li>a:hover {
-    color: #ED5565;
-    border-bottom: 2px solid #ED5565;
+    color: #3c5eb5;
+    border-bottom: 2px solid #3c5eb5;
+    font-weight: 900;
 }
 .nav.nav-contrast-red.nav-tabs>li>a {
     color: inherit;
 }
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover, .nav-tabs>li.open>a, .nav-tabs>li.open>a:focus, .nav-tabs>li.open>a:hover {
     border: none;
-    border-bottom: 2px solid #5D9CEC;
+    border-bottom: 2px solid #3c5eb5;
 }
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
-    color: #5D9CEC;
+    color: #3c5eb5;
     background-color: transparent;
     cursor: default;
 }
@@ -349,7 +351,7 @@ a.kit-avatar {
     box-shadow: none;
 }
 .btn-link {
-    color: #5D9CEC;
+    color: #3c5eb5;
     font-weight: 400;
     border-radius: 0;
 }
@@ -507,13 +509,19 @@ p {
     border-left: 1px solid rgba(22,24,27,.12);
 }
 .input-group.input-group-in>.input-group-btn>.btn {
-    color: inherit;
-    padding: 0 12px;
-    border: none;
-    background-color: transparent;
-    outline: 0;
-    box-shadow: none;
-    height: auto;
+    padding: 0 19px;
+    position: relative;
+    float: right;
+    font-family: inherit;
+    font-weight: bold;
+    font-size: 16px;
+    border: 0;
+    margin: 1px 0px;
+    border-radius: 3px;
+    cursor: pointer;
+    background: rgb(60, 94, 181);
+    color: #fff;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0);
 }
 .timeline-item:nth-child(odd):after {
     left: 20px;

@@ -12,7 +12,7 @@ body {
     position: absolute;
     bottom: -27px;
     right: 20px;
-    background: #fe5621;
+    background: #3c5eb5;
     color: #fff;
     text-align: center;
     font-size: 18px;
@@ -29,7 +29,7 @@ body {
 }
 
 .userProfileInfo .image .editImage:hover {
-    background: #fe693a
+    background: #3c5eb5
 }
 
 .userProfileInfo .box {
@@ -385,4 +385,68 @@ body {
     .userProfileInfo .image img {
         width: 100%;
     }
+}
+
+.user_info_1{
+    color: #337ab7;
+    text-decoration: none;
+    font-weight: bold;
+}
+strong {
+    font-weight: 700;
+    color: #3c5eb5;
+}
+
+
+
+/*--- custom from bootstrap main css-----/
+
+
+
+ */
+
+
+.navbar-default .navbar-nav > li > a {
+    color: #ffffff;
+}
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+    color: #ffffff;
+    background-color: transparent;
+}
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+    color: #ffffff;
+    background-color: #3c5eb5;
+}
+.navbar-default .navbar-nav > .disabled > a,
+.navbar-default .navbar-nav > .disabled > a:hover,
+.navbar-default .navbar-nav > .disabled > a:focus {
+    color: #ffffff;
+    background-color: transparent;
+}
+.navbar-default .navbar-toggle {
+    border-color: #ffffff;
+}
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+    background-color: #3c5eb5;
+}
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: #ffffff;
+}
+.navbar-default .navbar-collapse,
+.navbar-default .navbar-form {
+    border-color: #ffffff;
+}
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus {
+    color: #ffffff;
+    background-color: #3c5eb5;
+}
+.navbar-default .navbar-brand:focus, .navbar-default .navbar-brand:hover {
+    color: #ffffff;
+    background-color: transparent;
 }
