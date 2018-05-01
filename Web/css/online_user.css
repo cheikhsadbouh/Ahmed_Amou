@@ -70,3 +70,12 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+.chat-users h6 {
+    font-size: 24px;
+    margin: 0 0 20px;
+    /* background-color: #3C5EB5; */
+    color: #3C5EB5;
+    border-bottom-color: #3C5EB5;
+    border-bottom-style: inset;
+    /* width: -webkit-fill-available; */
+}

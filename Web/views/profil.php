@@ -144,7 +144,7 @@ if(!empty($all_posts)){
                      <li><a href="#"  data-toggle="modal" data-target="#login-Modal">Fixed top</a></li>-->
                     <li  id="generique" onclick="clear_badge_0()"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="fa  fa-2x fa-bell-o"></i><span class="badge" style="
 background-color: #fdfdfd;color: #d00909;"></span></a>
-                        <ul class="dropdown-menu   col-xs-12 scroll_notif chats" style="width: 354px; height: calc(50vh - 9px);
+                        <ul class="dropdown-menu   col-xs-8 scroll_notif chats" style="width: 280px; height: calc(50vh - 9px);
  overflow: hidden;
     outline: none;     border-radius: 5px;
     margin-top: 7px;">

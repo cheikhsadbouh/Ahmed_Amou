@@ -108,7 +108,7 @@ function chunk(str, n) {
                             '                                        <strong class="primary-font">'+array[i][4]+'</strong>\n' +
                             '                                        <small class="pull-right text-muted"><i class="fa fa-clock-o"></i>'+array[i][2]+'</small>\n' +
                             '                                    </div>\n' +
-                            '                                    <p class="scroll_notif">\n' +
+                            '                                    <p class="">\n' +
                             '                                  ' +array[i][1]+
                             '                                    </p>\n' +
                             '                                </div>\n' +
