@@ -39,6 +39,7 @@ if(!empty($all_posts)) {
 <link href="../css/avatar.css" rel="stylesheet">
 <link href="../css/upload_file.css" rel="stylesheet">
 <link href="../css/input_material_design.css" rel="stylesheet">
+<link href="../css/my_custom_font_icon.css" rel="stylesheet">
 
 
 <link href="../css/profil_user.css" rel="stylesheet">
@@ -54,7 +55,6 @@ if(!empty($all_posts)) {
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
 </head>
 <body class="home" id="load_me">
@@ -72,11 +72,8 @@ if(!empty($all_posts)) {
             <div class="navi">
                 <ul>
                     <li class="active"><a href="#"><i class="fa fa-home" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Home</span></a></li>
-                    <li><a href="#"><i class="fa fa-tasks" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Workflow</span></a></li>
-                    <li><a href="#"><i class="fa fa-bar-chart" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Statistics</span></a></li>
-                    <li><a href="#"><i class="fa fa-user" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Calender</span></a></li>
-                    <li><a href="#"><i class="fa fa-calendar" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Users</span></a></li>
-                    <li><a href="#"><i class="fa fa-cog" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Setting</span></a></li>
+                    <li><a href="admin.php"><i class="fa fa-product-hunt" aria-hidden="true"></i><span class="hidden-xs hidden-sm">My Profil</span></a></li>
+                    <li><a href="users.php"><i class="fa fa-users" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Users</span></a></li>
                 </ul>
             </div>
         </div>
@@ -104,11 +101,28 @@ if(!empty($all_posts)) {
                             <ul class="list-inline header-top pull-right">
                                 <li class="hidden-xs"><a href="#" class="add-project" data-toggle="modal" data-target="#add_project">Add Project</a></li>
                                 <li><a href="#"><i class="fa fa-envelope" aria-hidden="true"></i></a></li>
-                                <li>
-                                    <a href="#" class="icon-info">
+                                <li class="dropdown" id="generique" onclick="clear_badge_0()">
+                                    <a href="#" class="icon-info dropdown-toggle"  data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                         <i class="fa fa-bell" aria-hidden="true"></i>
-                                        <span class="label label-primary">3</span>
+                                        <span class=" badge label label-primary">8</span>
+
                                     </a>
+                                    <ul class="dropdown-menu   col-xs-8 scroll_notif chats" style="width: 280px; height: calc(50vh - 9px);
+ overflow: hidden;
+    outline: none;     border-radius: 5px;
+    margin-top: 7px; margin-left: -86px;">
+
+                                        <li> <div class="jumbotron" style="    border-radius: 1px;
+    background-color: #F4F4FE;
+    color: #3c5eb5;
+    height: 118px;
+    margin-top: 72px;">
+                                    <span style="font-size: larger;
+    font-weight: bold;"> no notifiction </span>
+
+                                            </div> </li>
+
+                                    </ul>
                                 </li>
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="<?php   echo $user_info[0][1]  ;?>" alt="user">
@@ -116,13 +130,15 @@ if(!empty($all_posts)) {
                                     <ul class="dropdown-menu">
                                         <li>
                                             <div class="navbar-content">
-                                                <span>JS Krishna</span>
+                                                <span><?php   echo $user_info[0][0]  ;?></span>
                                                 <p class="text-muted small">
-                                                    me@jskrishna.com
+                                                    <?php   echo $user_info[0][2]  ;?>
                                                 </p>
                                                 <div class="divider">
                                                 </div>
-                                                <a href="#" class="view btn-sm active">View Profile</a>
+                                                <a href="#" class="view btn-sm active" onclick="logout('<?php echo $_SESSION["id"] ;?>')"><i class="fa fa-1x fa-sign-out" style="    color: #ffffff;
+    width: 89px;
+    font-size: large;"></i></a>
                                             </div>
                                         </li>
                                     </ul>
@@ -143,18 +159,19 @@ if(!empty($all_posts)) {
                                     <div class="panel panel-primary">
                                         <div class="panel-heading">
                                             <div class="row">
-                                                <div class="col-xs-3">
-                                                    <i class="fa fa-comments fa-5x"></i>
+                                                <div class="col-xs-3" style="padding-top: 4px;padding-bottom: 11px;">
+
+                                                   <i class="fa fa-4x fa-E"></i>
                                                 </div>
                                                 <div class="col-xs-9 text-right">
-                                                    <div class="huge">26</div>
-                                                    <div>New Comments!</div>
+                                                    <div class="huge"><i class="fa fa-user"></i></div>
+                                                    <div style="font-size: 2em;     margin-right: 62px;" id="expert_u"></div>
                                                 </div>
                                             </div>
                                         </div>
                                         <a href="#">
                                             <div class="panel-footer">
-                                                <span class="pull-left">View Details</span>
+                                                <span class="pull-left">Expert</span>
                                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                                 <div class="clearfix"></div>
                                             </div>
@@ -165,18 +182,19 @@ if(!empty($all_posts)) {
                                     <div class="panel panel-primary">
                                         <div class="panel-heading">
                                             <div class="row">
-                                                <div class="col-xs-3">
-                                                    <i class="fa fa-comments fa-5x"></i>
+                                                <div class="col-xs-3" style="padding-top: 4px;padding-bottom: 11px;">
+
+                                                    <i class="fa fa-4x fa-T"></i>
                                                 </div>
                                                 <div class="col-xs-9 text-right">
-                                                    <div class="huge">26</div>
-                                                    <div>New Comments!</div>
+                                                    <div class="huge"><i class="fa fa-user"></i></div>
+                                                    <div style="font-size: 2em;     margin-right: 62px;"  id="Technician_u"></div>
                                                 </div>
                                             </div>
                                         </div>
                                         <a href="#">
                                             <div class="panel-footer">
-                                                <span class="pull-left">View Details</span>
+                                                <span class="pull-left">Technician</span>
                                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                                 <div class="clearfix"></div>
                                             </div>
@@ -187,18 +205,19 @@ if(!empty($all_posts)) {
                                     <div class="panel panel-primary">
                                         <div class="panel-heading">
                                             <div class="row">
-                                                <div class="col-xs-3">
-                                                    <i class="fa fa-comments fa-5x"></i>
+                                                <div class="col-xs-3" style="padding-top: 4px;padding-bottom: 11px;">
+
+                                                    <i class="fa fa-4x fa-S"></i>
                                                 </div>
                                                 <div class="col-xs-9 text-right">
-                                                    <div class="huge">26</div>
-                                                    <div>New Comments!</div>
+                                                    <div class="huge"><i class="fa fa-user"></i></div>
+                                                    <div style="font-size: 2em;     margin-right: 62px;" id="student_u"></div>
                                                 </div>
                                             </div>
                                         </div>
                                         <a href="#">
                                             <div class="panel-footer">
-                                                <span class="pull-left">View Details</span>
+                                                <span class="pull-left">Student</span>
                                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                                 <div class="clearfix"></div>
                                             </div>
@@ -209,18 +228,19 @@ if(!empty($all_posts)) {
                                     <div class="panel panel-primary">
                                         <div class="panel-heading">
                                             <div class="row">
-                                                <div class="col-xs-3">
-                                                    <i class="fa fa-comments fa-5x"></i>
+                                                <div class="col-xs-3" style="padding-top: 4px;padding-bottom: 11px;">
+
+                                                    <i class="fa fa-4x fa-J"></i>
                                                 </div>
                                                 <div class="col-xs-9 text-right">
-                                                    <div class="huge">26</div>
-                                                    <div>New Comments!</div>
+                                                    <div class="huge"><i class="fa fa-user"></i></div>
+                                                    <div style="font-size: 2em;     margin-right: 62px;"  id="jobless_u"></div>
                                                 </div>
                                             </div>
                                         </div>
                                         <a href="#">
                                             <div class="panel-footer">
-                                                <span class="pull-left">View Details</span>
+                                                <span class="pull-left">jobless</span>
                                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                                 <div class="clearfix"></div>
                                             </div>
@@ -324,7 +344,7 @@ if(!empty($all_posts)) {
                                                     <?php   }else{
 
                                                     if(count($all_posts[$r][7])>2) {?>
-                                                    <div class="scrollable" style="height: calc(30vh - 9px);">
+                                                    <div class="scrollable" style=" width: fit-content; height: calc(30vh - 9px);">
                                                         <?php   }else{ ?>
                                                         <div class="" >
                                                             <?php   } }?>
@@ -362,7 +382,7 @@ if(!empty($all_posts)) {
 
 
                                                                                         <?php if(str_word_count($all_posts[$r][$counter][0])>180) { ?>
-                                                                                    <div class="chat">
+                                                                                    <div class="chat_scrolable">
                                                                                         <?php echo  $all_posts[$r][$counter][0] ; ?>
                                                                                     </div>
                                                                                     <?php } else{?>
@@ -459,7 +479,7 @@ if(!empty($all_posts)) {
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="../js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.6.8-fix/jquery.nicescroll.min.js"></script>
+<script src="../js/jquery.nicescroll.js"></script>
 <script src="../js/nicescroll.js"></script>
 <script src="../js/submit_post.js"></script>
 <script src="../js/submit_comment.js"></script>

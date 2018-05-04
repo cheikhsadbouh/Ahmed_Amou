@@ -55,7 +55,7 @@ if(!empty($all_posts)){
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-<body id="load_me">
+<body id="load_me" style="">
 <!-- Modal -->
 <div class="   modal fade" id="primary" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -329,7 +329,7 @@ background-color: #fdfdfd;color: #d00909;"></span></a>
 
 
                                                         <?php if(str_word_count($all_posts[$r][$counter][0])>180) { ?>
-                                                    <div class="chat">
+                                                    <div class="chat_scrable">
                                                         <?php echo  $all_posts[$r][$counter][0] ; ?>
                                                     </div>
                                                     <?php } else{?>
@@ -396,7 +396,7 @@ background-color: #fdfdfd;color: #d00909;"></span></a>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="../js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.6.8-fix/jquery.nicescroll.min.js"></script>
+<script src="../js/jquery.nicescroll.js"></script>
 <script src="../js/nicescroll.js"></script>
 <script src="../js/submit_post.js"></script>
 <script src="../js/submit_comment.js"></script>
@@ -496,7 +496,7 @@ background-color: #fdfdfd;color: #d00909;"></span></a>
 <script>
     // button ripple effect from @ShawnSauce 's pen https://codepen.io/ShawnSauce/full/huLEH
 
-
+  
 
 </script>
 </html>

@@ -12,7 +12,39 @@ var array1;
             if(data.length > 0){
                 array1 = JSON.parse(data);
             }
+            if(array1.length > 0){
+                for (var i=array1.length -1;i>=0;i--) {
 
+                    var value=array1[i][3];
+                    switch (value) {
+                        case "expert":{
+                            $("#expert_u").empty();
+                            $("#expert_u").html( $("#expert_u").val()+1);
+                            break;}
+                        case "student":{
+                            $("#student_u").empty();
+                            $("#student_u").html( $("#student_u").val()+1);
+                            break;}
+                        case "jobless":{
+                            $("#jobless_u").empty();
+                            $("#jobless_u").html(value);
+                            break;}
+                        case "technician":{
+                            $("#Technician_u").empty();
+                            $("#Technician_u").html(value);
+                            break;}
+                    }
+                }
+                if( $('#expert_u').html() == '' ) {
+                    $("#expert_u").html(0);
+                }if( $('#student_u').html() == '') {
+                    $("#student_u").html(0);
+                }if( $('#jobless_u').html() == '' ) {
+                    $("#jobless_u").html(0);
+                }if( $('#Technician_u').html() == '' ) {
+                    $("#Technician_u").html(0);
+                }
+            }
             if(array1.length > 0){
                 $('#users > ul').empty();
 
