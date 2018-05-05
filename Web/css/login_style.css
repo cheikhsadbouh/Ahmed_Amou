@@ -47,7 +47,7 @@ h2.inactive {
 
 h2.active {
     color: #0d0d0d;
-    border-bottom: 2px solid #5fbae9;
+    border-bottom: 2px solid #337ab7;
 }
 
 
@@ -55,7 +55,7 @@ h2.active {
 /* FORM TYPOGRAPHY*/
 
 input[type=button], input[type=submit], input[type=reset]  {
-    background-color: #56baed;
+    background-color: #337ab7;
     border: none;
     color: white;
     padding: 15px 80px;
@@ -77,7 +77,7 @@ input[type=button], input[type=submit], input[type=reset]  {
 }
 
 input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover  {
-    background-color: #39ace7;
+    background-color: #337ab7;
 }
 
 input[type=button]:active, input[type=submit]:active, input[type=reset]:active  {
@@ -111,7 +111,7 @@ input[type=text] {
 
 input[type=text]:focus {
     background-color: #fff;
-    border-bottom: 2px solid #5fbae9;
+    border-bottom: 2px solid #337ab7;
 }
 
 input[type=text]:placeholder {
@@ -209,7 +209,7 @@ input[type=text]:placeholder {
     bottom: -10px;
     width: 0;
     height: 2px;
-    background-color: #56baed;
+    background-color: #337ab7;
     content: "";
     transition: width 0.2s;
 }
@@ -247,7 +247,7 @@ input[type=text]:placeholder {
     color: #cccccc;
 }
 #forget-form {
-    color: #92badd;
+    color: #337ab7;
     display:inline-block;
     text-decoration: none;
     font-weight: 400;
