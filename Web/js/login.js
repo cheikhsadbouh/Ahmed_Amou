@@ -22,7 +22,7 @@ $(document).ready(function() {
                 var inputid = $this.attr('id');
 
                 var el = document.getElementById(inputid);
-                el.style.borderBottomColor="#5fbae9";
+                el.style.borderBottomColor="#337ab7";
                 console.log("full");
                 $("#alert").hide();
 

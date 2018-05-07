@@ -350,6 +350,21 @@
 
 
     </style>
+
+    <style>
+        .modal-header-primary {
+            color:#fff;
+            padding:9px 15px;
+            border-bottom:1px solid #eee;
+            background-color: #428bca;
+            -webkit-border-top-left-radius: 5px;
+            -webkit-border-top-right-radius: 5px;
+            -moz-border-radius-topleft: 5px;
+            -moz-border-radius-topright: 5px;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+    </style>
 </head>
 <body>
 
@@ -382,6 +397,17 @@
                                 </ul>
                             </li>
                             <li><a href="pricing.html">About US</a></li>
+                            <li><a href="pricing.html">
+                                    <div id="google_translate_element"></div><script type="text/javascript">
+                                        function googleTranslateElementInit() {
+                                            new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false}, 'google_translate_element');
+                                        }
+                                    </script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+
+
+                                </a></li>
                             <li class="btn-cta"><a href="#" data-toggle="modal" data-target="#signup-Modal"><span>Register</span></a></li>
                             <li class="btn-cta"><a href="#" data-toggle="modal" data-target="#login-Modal"><span>Login</span></a></li>
                         </ul>
@@ -920,6 +946,8 @@
 
 <!-- login -->
 <script src="../js/login.js"></script>
+<!-- become user -->
+<script src="../js/become_user.js"></script>
 
 <!-- Script to Activate the Carousel -->
 <script>
@@ -961,7 +989,8 @@
 
                 <!-- Remind Passowrd -->
                 <div id="formFooter">
-                    <a class="underlineHover" href="#" id="forget-form">create an account</a>
+                    <a class="underlineHover" href="#" data-toggle="modal" data-target="#signup-Modal"  id="forget-form">create an account</a>
+
                 </div>
 
             </div>
@@ -991,36 +1020,36 @@
                                 <div class="form-wrap">
                                     <div class="tab">
                                         <ul class="tab-menu">
-                                            <li class="active gtco-first"><a href="#" data-tab="signup">Sign up
+                                            <li class="active gtco-first"><a href="#" data-tab="signup">USER
 
 
                                                     <button type="button"  class="close" data-dismiss="modal">&times;</button>
 
                                                 </a></li>
-                                            <li class="gtco-second"><a href="#" data-tab="login">Login
+                                            <li class="gtco-second"><a href="#" data-tab="login">PARTENER
                                                     <button type="button"  class="close" data-dismiss="modal">&times;</button>
                                                 </a></li>
                                         </ul>
                                         <div class="tab-content">
                                             <div class="tab-content-inner active" data-content="signup">
-                                                <form action="#">
+                                                <form   id="form_become_user" onsubmit="return false" method="post" action="">
                                                     <div class="row form-group">
                                                         <div class="col-md-12">
-                                                            <label for="username">Username or Email</label>
+                                                            <label for="username">Full Name </label><br>
 
-                                                            <input type="text"  class=" second" name="user" placeholder="login">
+                                                            <input type="text"  class=" second" name="full_name" id="full_name" placeholder="type your name ">
                                                         </div>
                                                     </div>
                                                     <div class="row form-group">
                                                         <div class="col-md-12">
-                                                            <label for="password">Password</label>
-                                                            <input type="text" class=" second" name="user" placeholder="login">
+                                                            <label for="password">Email   </label><br>
+                                                            <input type="text" class=" second" name="U_email" id="U_email" placeholder="type your email">
                                                         </div>
                                                     </div>
                                                     <div class="row form-group">
                                                         <div class="col-md-12">
-                                                            <label for="hjhj">Repeat Password</label>
-                                                            <input type="text" id="Nomilisateur" class=" second" name="user" placeholder="login">
+                                                            <label for="hjhj">Tel   </label><br>
+                                                            <input type="text" id="U_tel" class=" second" name="U_tel" placeholder="type your phone number">
                                                         </div>
                                                     </div>
                                                     <div class="row form-group">
@@ -1028,17 +1057,18 @@
 
                                                             <div class=" col-md-10  materialSelect inline empty">
 
-                                                                <ul class=" select" style="    overflow: hidden;
+                                                                <ul class="select" style="    overflow: hidden;
     width: 102%;
     border: 2px solid rgb(246, 246, 246);
     background-color: rgb(246, 246, 246);
-    border-radius: 5px;">
-                                                                    <li data-selected="true">Choose something...</li>
-                                                                    <li data-value="0">First option</li>
-                                                                    <li data-value="1">Second option</li>
-                                                                    <li data-value="2">Third option</li>
+    border-radius: 5px;" id="äccount_type_ul" >
+                                                                    <li data-selected="true"  data-value="nothing" >Choose account type</li>
+                                                                    <li data-value="Expert" >Expert</li>
+                                                                    <li data-value="Student">Student</li>
+                                                                    <li data-value="Jobless" >Jobless</li>
+                                                                    <li data-value="Technician" >Technician</li>
                                                                 </ul>
-                                                                <div class="message">Please select something</div>
+                                                                <div class="message">Please select your account type</div>
                                                             </div>
 
                                                         </div>
@@ -1048,20 +1078,30 @@
                                                             <label for="hjhj">file</label>
                                                             <p class="file">
                                                                 <input type="file" name="file" id="file" />
-                                                                <label for="file">Upload your CV</label>
+                                                                <label for="file" id="lable_file">choose file </label>
                                                             </p>
                                                         </div>
                                                     </div>
                                                     <div class="row form-group">
                                                         <div class="col-md-12">
-                                                            <label for="hjhj">term and condition </label>
-                                                            <div style="border: 1px solid #e5e5e5; height: 200px; overflow: auto; padding: 10px;">
-                                                                <p>Lorem ipsum dolor sit amet, veniam numquam has te. No suas nonumes recusabo mea, est ut graeci definitiones. His ne melius vituperata scriptorem, cum paulo copiosae conclusionemque at. Facer inermis ius in, ad brute nominati referrentur vis. Dicat erant sit ex. Phaedrum imperdiet scribentur vix no, ad latine similique forensibus vel.</p>
+                                                            <label for="hjhj">Term and Condition </label>
+                                                            <div   style="border: 1px solid #e5e5e5; height: 200px; overflow: auto; padding: 10px;">
+                                                                <p>Let's switch over to NodeJS vs Java Tomcat7 (A far less common, but far less flawed comparison)
+
+                                                                    Server
+                                                                    Node provides it's own server runtime
+                                                                    Tomcat provides it's own server runtime
+                                                                    Request model
+                                                                    Node is event loop
+                                                                    Tomcat is thread per request
+                                                                    Execution model
+                                                                    Node is three steps removed from "bare metal"
+                                                                    Java is three steps removed from "bare metal"</p>
                                                             </div>
                                                             <div >
                                                                 <div class="md-checkbox md-checkbox-inline">
-                                                                    <input id="i10" type="checkbox">
-                                                                    <label for="i10">Inline & Centered</label>
+                                                                    <input id="i10" type="checkbox" name="term_condition">
+                                                                    <label for="i10">Agree with the terms and conditions</label>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1071,7 +1111,7 @@
 
                                                     <div class="row form-group">
                                                         <div class="col-md-12">
-                                                            <input type="submit" class="" value="Sign up">
+                                                            <input type="submit" id="submit_become_user" class="" value="Submit">
                                                         </div>
                                                     </div>
                                                 </form>
@@ -1116,6 +1156,29 @@
     </div>
 </div>
 <!--end model-->
+
+
+
+
+<!--  success Modal -->
+<div class="modal fade" id="primary" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header modal-header-primary">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h1 style="color: #FFFFFF;"><i class="fa icon-ok fa-1x"></i>Thank you for join us </h1>
+            </div>
+            <div class="modal-body">
+                Please to comfirm your registration visit us in a person .
+            </div>
+            <div class="modal-footer">
+                <input type="submit" class=" pull-left"  style ="    padding: 11px 80px; margin:0px" value="Close" data-dismiss="modal"></input>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- Modal -->
+
 
 <script>
     $(function(){

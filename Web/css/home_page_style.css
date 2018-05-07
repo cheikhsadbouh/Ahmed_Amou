@@ -16,7 +16,8 @@ body {
   font-size: 16px;
   line-height: 1.7;
   color: #777;
-  background: #ececec;
+ /* background: #ececec;*/
+  background: #f2f6f7;
 }
 
 #page {
@@ -1014,10 +1015,11 @@ form label {
   position: absolute;
   z-index: 1901;
   width: 270px;
-  background: black;
+  background: #337ab7;
   top: 0;
   right: 0;
   top: 0;
+  font-weight: bold;
   bottom: 0;
   padding: 45px 40px 40px 40px;
   overflow-y: auto;
@@ -1044,7 +1046,7 @@ form label {
   transform: translateX(0px);
 }
 #gtco-offcanvas a {
-  color: rgba(255, 255, 255, 0.5);
+  color: #FFFFFF;
 }
 #gtco-offcanvas a:hover {
   color: rgba(255, 255, 255, 0.8);
@@ -1081,7 +1083,7 @@ form label {
   -moz-osx-font-smoothing: grayscale;
   content: "\e921";
   font-size: 20px;
-  color: rgba(255, 255, 255, 0.2);
+  color: #FFFFFF;
   -webkit-transition: 0.5s;
   -o-transition: 0.5s;
   transition: 0.5s;
