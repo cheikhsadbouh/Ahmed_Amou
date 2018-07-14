@@ -38,7 +38,7 @@ function Dao_become_user($name,$email,$tel,$cv,$account_type){
         $mail->Host = 'smtp.googlemail.com';  // Specify main and backup SMTP servers
         $mail->SMTPAuth = true;                               // Enable SMTP authentication
         $mail->Username = $from;                 // SMTP username
-        $mail->Password = 'zvuvtfdgtzzamlal';                           // SMTP password
+        $mail->Password = 'none';                           // SMTP password
         $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
         $mail->Port = 587;                                    // TCP port to connect to
 
